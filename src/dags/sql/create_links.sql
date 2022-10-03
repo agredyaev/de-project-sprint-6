@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS NEYBYARU__DWH.l_user_group_activity;
+DROP TABLE IF EXISTS NEYBYARU__DWH.l_user_group_activity CASCADE;
 
 CREATE TABLE NEYBYARU__DWH.l_user_group_activity (
     hk_l_user_group_activity bigint primary key,

@@ -11,13 +11,13 @@ WITH
     ), 
     user_group_messages AS (
         SELECT
-            luga.hk_group_id,
-            COUNT(DISTINCT luga.hk_user_id) cnt_users_in_group_with_messages
+            lgd.hk_groups_id as hk_group_id,
+            COUNT(DISTINCT lum.hk_user_id) cnt_users_in_group_with_messages
         FROM
             NEYBYARU__DWH.l_user_message lum
-            JOIN NEYBYARU__DWH.l_user_group_activity luga ON luga.hk_user_id = lum.hk_user_id
+            JOIN NEYBYARU__DWH.l_groups_dialogs lgd on lgd.hk_message_id=lum.hk_message_id
         GROUP BY
-            luga.hk_group_id
+            lgd.hk_groups_id
     ),
     user_group_log AS (
         SELECT

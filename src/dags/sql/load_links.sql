@@ -1,3 +1,5 @@
+TRUNCATE TABLE NEYBYARU__DWH.l_user_group_activity;
+
 INSERT INTO
     NEYBYARU__DWH.l_user_group_activity(
         hk_l_user_group_activity,
@@ -7,7 +9,7 @@ INSERT INTO
         load_src
     )
 SELECT
-    HASH(hu.hk_user_id, hg.hk_group_id),
+    DISTINCT HASH(hu.hk_user_id, hg.hk_group_id),
     hu.hk_user_id,
     hg.hk_group_id,
     now() AS load_dt,

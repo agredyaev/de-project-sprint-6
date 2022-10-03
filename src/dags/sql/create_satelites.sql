@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS NEYBYARU__DWH.s_auth_history;
+DROP TABLE IF EXISTS NEYBYARU__DWH.s_auth_history CASCADE;
 
 CREATE TABLE NEYBYARU__DWH.s_auth_history (
     hk_l_user_group_activity bigint NOT NULL CONSTRAINT fk_s_auth_history_l_user_group_activity REFERENCES NEYBYARU__DWH.l_user_group_activity (hk_l_user_group_activity),
@@ -9,7 +9,7 @@ CREATE TABLE NEYBYARU__DWH.s_auth_history (
     load_src VARCHAR(20)
 )
 ORDER BY
-    load_dt SEGMENTED BY user_id_from ALL nodes
-PARTITION BY load_dt::DATE
+    event_dt SEGMENTED BY hk_l_user_group_activity ALL nodes
+PARTITION BY event_dt::DATE
 GROUP BY
-    calendar_hierarchy_day(load_dt :: DATE, 3, 2);
+    calendar_hierarchy_day(event_dt :: DATE, 3, 2);

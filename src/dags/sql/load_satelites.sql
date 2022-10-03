@@ -1,3 +1,5 @@
+TRUNCATE TABLE NEYBYARU__DWH.s_auth_history;
+
 INSERT INTO
     NEYBYARU__DWH.s_auth_history (
         hk_l_user_group_activity,
